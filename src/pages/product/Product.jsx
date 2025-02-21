@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectCountValue } from "../../features/counter/counterSlice";
 
 export default function Product() {
-  return (
-    <div>
-      <h1>Product page</h1>
-    </div>
-  );
+  const countValue = useSelector(selectCountValue);
+
+  console.log("countValue", countValue);
+
+  return <div>{countValue}</div>;
 }

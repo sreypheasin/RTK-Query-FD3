@@ -1,36 +1,24 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/layouts/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { increase, selectCountValue } from "./features/counter/counterSlice";
 
 function App() {
-  // let value = 0;
-  // [Current-state, setState] = useState()
-  const [count, setCount] = useState(0);
-  const [isDeleted, setIsDeleted] = useState(false);
-  //1. useEffect(<function>, <dependency>)
-
-  useEffect(() => {
-    console.log("Called");
-  }, []);
-
-  console.log("Outside useEffect");
+  // useDispatch
+  const dispatch = useDispatch();
+  // useSelect
+  const countValue = useSelector(selectCountValue);
+  console.log("countValue", countValue);
   return (
     <>
-      <h1 className="text-blue-900 text-3xl font-bold">{count}</h1>
+      <h1 className="text-blue-900 text-3xl font-bold">{countValue}</h1>
       <button
-        onClick={() => setCount(count + 1)}
+        onClick={() => dispatch(increase())}
         className="bg-blue-900 py-2.5 px-5 rounded-md text-white"
       >
         Count Up
       </button>
-      <button
-        onClick={() => setIsDeleted(!isDeleted)}
-        className="bg-blue-900 py-2.5 px-5 rounded-md text-white"
-      >
-        {isDeleted && "Deleted"}
-        {!isDeleted && "Not delete"}
-      </button>
-      {/* <ButtonAdd /> */}
     </>
   );
 }
