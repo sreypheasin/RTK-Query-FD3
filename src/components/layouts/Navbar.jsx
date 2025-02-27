@@ -1,10 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router";
-import { selectCountValue } from "../../features/counter/counterSlice";
 
 export default function Navbar() {
-  const count = useSelector(selectCountValue);
   const menu = [
     {
       title: "Home",
@@ -27,7 +24,6 @@ export default function Navbar() {
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Flowbite
           </span>
-          <p>{count}</p>
         </a>
         <button
           data-collapse-toggle="navbar-dropdown"

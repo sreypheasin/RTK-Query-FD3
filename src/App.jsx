@@ -1,25 +1,31 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Navbar from "./components/layouts/Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { increase, selectCountValue } from "./features/counter/counterSlice";
+import ProductCardSkeleton from "./components/skeleton/ProductCardSkeleton";
+import ProductCard from "./components/cards/ProductCard";
+import { useGetAllProductsQuery } from "./features/products/productSlice";
 
 function App() {
-  // useDispatch
-  const dispatch = useDispatch();
-  // useSelect
-  const countValue = useSelector(selectCountValue);
-  console.log("countValue", countValue);
+  const { data: productData, isLoading } = useGetAllProductsQuery();
+  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  console.log(productData);
+
   return (
-    <>
-      <h1 className="text-blue-900 text-3xl font-bold">{countValue}</h1>
-      <button
-        onClick={() => dispatch(increase())}
-        className="bg-blue-900 py-2.5 px-5 rounded-md text-white"
-      >
-        Count Up
-      </button>
-    </>
+    <main className="max-w-screen-xl mx-auto">
+      <h1 className="text-blue-900 text-3xl font-bold">Home page</h1>
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {isLoading &&
+          skeleton.map((index) => <ProductCardSkeleton key={index} />)}
+        {!isLoading &&
+          productData?.products.map((product, index) => (
+            <ProductCard
+              key={index}
+              title={product.title}
+              thumbnail={product.thumbnail}
+              price={product.price}
+              rating={product.rating}
+            />
+          ))}
+      </section>
+    </main>
   );
 }
 
