@@ -9,7 +9,7 @@ function Product() {
   console.log(data);
 
   return (
-    <main className="max-w-screen-xl mx-auto">
+    <>
       <h1 className="text-blue-900 text-3xl font-bold">Products Page</h1>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {isLoading &&
@@ -18,6 +18,7 @@ function Product() {
           data?.products.map((product, index) => (
             <ProductCard
               key={index}
+              id={product.id}
               title={product.title}
               thumbnail={product.thumbnail}
               price={product.price}
@@ -25,7 +26,7 @@ function Product() {
             />
           ))}
       </section>
-    </main>
+    </>
   );
 }
 

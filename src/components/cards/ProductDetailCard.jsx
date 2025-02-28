@@ -2,7 +2,13 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-export default function ProductCard({ thumbnail, title, price, rating, id }) {
+export default function ProductDetailCard({
+  thumbnail,
+  title,
+  price,
+  rating,
+  id
+}) {
   return (
     <div class="w-full bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
       <a href={`/products/${id}`}>
@@ -12,11 +18,11 @@ export default function ProductCard({ thumbnail, title, price, rating, id }) {
             thumbnail ||
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s"
           } // use normal <img> attributes as props
-          className="w-full h-[300px]"
+          className="w-full object-cover"
         />
       </a>
       <div class="px-5 pb-5">
-        <a href="#">
+        <a href={`/products/${id}`}>
           <h5 class="text-xl line-clamp-1 font-semibold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
